@@ -24,7 +24,9 @@ this flow graph show the comparion between the SNR estimators in the GNU-Radio (
 the new snr estimtor algorthim which interduced in this paper Mth Root Mth Power SNR MPSK Estimator 
 https://link.springer.com/chapter/10.1007/978-3-319-65960-2_21
 
-prerequisite libarary
+prerequisite libraries
+
+
 1- Install gr-POWER (for power_ff block)
 
 1) Log into а desktop terminal.
