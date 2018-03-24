@@ -30,19 +30,14 @@ prerequisite libraries
 1- Install gr-POWER (for power_ff block)
 
 1) Log into а desktop terminal.
-2) Make sure you're in your home directory by typing "cd ~".
-3) Type "sudo apt-get install git-core".
-4) Type "sudo apt-get install cmake".
-5) Type "sudo apt-get install libusb-1.0-0-dev".
-6) Type "sudo apt-get install build-essential".
 move to the library directory
-8) Type "cd gr-POWER".
-9) Type "mkdir build".
-10) Type "cd build".
-11) Type "cmake ../ -DINSTALL_UDEV_RULES=ON".
-12) Type "make".
-13) Type "sudo make install".
-14) Type "sudo ldconfig" 
+2) Type "cd gr-POWER".
+3) Type "mkdir build".
+4) Type "cd build".
+5) Type "cmake ../ -DINSTALL_UDEV_RULES=ON".
+6) Type "make".
+7) Type "sudo make install".
+8) Type "sudo ldconfig" 
 
  
 2-install gr-baz
