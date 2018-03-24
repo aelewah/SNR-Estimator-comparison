@@ -1,0 +1,91 @@
+/* -*- c++ -*- */
+/* 
+ * Copyright 2016 <+YOU OR YOUR COMPANY+>.
+ * 
+ * This is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 3, or (at your option)
+ * any later version.
+ * 
+ * This software is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this software; see the file COPYING.  If not, write to
+ * the Free Software Foundation, Inc., 51 Franklin Street,
+ * Boston, MA 02110-1301, USA.
+ */
+
+#ifdef HAVE_CONFIG_H
+#include "config.h"
+#endif
+
+#include <gnuradio/io_signature.h>
+#include "power_ff_impl.h"
+#include <math.h>
+
+namespace gr {
+  namespace MPOWER {
+
+    power_ff::sptr
+    power_ff::make(float m)
+    {
+      return gnuradio::get_initial_sptr
+        (new power_ff_impl(m));
+    }
+
+    /*
+     * The private constructor
+     */
+    power_ff_impl::power_ff_impl(float m)
+      : gr::block("power_ff",
+              gr::io_signature::make(1, 1, sizeof(float)),
+              gr::io_signature::make(1, 1, sizeof(float))),
+               d_m(m)
+    {}
+
+    /*
+     * Our virtual destructor.
+     */
+    power_ff_impl::~power_ff_impl()
+    {
+    }
+
+    void
+    power_ff_impl::forecast (int noutput_items, gr_vector_int &ninput_items_required)
+    {
+      unsigned ninputs = ninput_items_required.size ();
+      for(unsigned i = 0; i < ninputs; i++) 
+      ninput_items_required[i] = noutput_items;
+    }
+
+    int
+    power_ff_impl::general_work (int noutput_items,
+                       gr_vector_int &ninput_items,
+                       gr_vector_const_void_star &input_items,
+                       gr_vector_void_star &output_items)
+    {
+      const float *in = (const float *) input_items[0];
+      float *out = (float *) output_items[0];
+      float origin = 0.0;
+
+      // Do <+signal processing+>
+      // Tell runtime system how many input items we consumed on
+      // each input stream.
+       for(int i = 0; i < noutput_items; i++) {
+         // ML decoder, determine the minimum distance from all constellation points 
+         out[i] = pow(in[i], d_m); 
+            //out[i] = in[i]*d_m; 
+         }
+      
+      consume_each (noutput_items);
+
+      // Tell runtime system how many output items we produced.
+      return noutput_items;
+    }
+
+  } /* namespace MPOWER */
+} /* namespace gr */
+

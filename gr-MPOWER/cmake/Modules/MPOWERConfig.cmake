@@ -1,0 +1,30 @@
+INCLUDE(FindPkgConfig)
+PKG_CHECK_MODULES(PC_MPOWER MPOWER)
+
+FIND_PATH(
+    MPOWER_INCLUDE_DIRS
+    NAMES MPOWER/api.h
+    HINTS $ENV{MPOWER_DIR}/include
+        ${PC_MPOWER_INCLUDEDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/include
+          /usr/local/include
+          /usr/include
+)
+
+FIND_LIBRARY(
+    MPOWER_LIBRARIES
+    NAMES gnuradio-MPOWER
+    HINTS $ENV{MPOWER_DIR}/lib
+        ${PC_MPOWER_LIBDIR}
+    PATHS ${CMAKE_INSTALL_PREFIX}/lib
+          ${CMAKE_INSTALL_PREFIX}/lib64
+          /usr/local/lib
+          /usr/local/lib64
+          /usr/lib
+          /usr/lib64
+)
+
+INCLUDE(FindPackageHandleStandardArgs)
+FIND_PACKAGE_HANDLE_STANDARD_ARGS(MPOWER DEFAULT_MSG MPOWER_LIBRARIES MPOWER_INCLUDE_DIRS)
+MARK_AS_ADVANCED(MPOWER_LIBRARIES MPOWER_INCLUDE_DIRS)
+
