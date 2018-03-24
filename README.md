@@ -29,8 +29,7 @@ prerequisite libraries
 
 1- Install gr-POWER (for power_ff block)
 
-1) Log into а desktop terminal.
-2)move to the library directory
+1) Log into а desktop terminal and move to the library directory
 3) Type "cd gr-POWER".
 4) Type "mkdir build".
 5) Type "cd build".
