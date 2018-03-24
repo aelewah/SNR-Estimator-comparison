@@ -30,14 +30,14 @@ prerequisite libraries
 1- Install gr-POWER (for power_ff block)
 
 1) Log into а desktop terminal.
-move to the library directory
-2) Type "cd gr-POWER".
-3) Type "mkdir build".
-4) Type "cd build".
-5) Type "cmake ../ -DINSTALL_UDEV_RULES=ON".
-6) Type "make".
-7) Type "sudo make install".
-8) Type "sudo ldconfig" 
+2)move to the library directory
+3) Type "cd gr-POWER".
+4) Type "mkdir build".
+5) Type "cd build".
+6) Type "cmake ../ -DINSTALL_UDEV_RULES=ON".
+7) Type "make".
+8) Type "sudo make install".
+9) Type "sudo ldconfig" .
 
  
 2-install gr-baz
